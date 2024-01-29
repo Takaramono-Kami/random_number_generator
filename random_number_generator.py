@@ -44,40 +44,42 @@ def decimal_uniform_distribution(b, a =0):
     return result
 
 # this function make list of random final number
-def linear_congruential_generator(b, multiplier, increment, seed, a= 0, *modulus):
-    
-    number_list = integer_uniform_distribution(b, a)
+def linear_congruential_generator(number_list, multiplier, increment, seed, *modulus):
     
     modulus = len(number_list)
     random_number_instant = ((multiplier * seed) + increment) % modulus
     random_number = number_list[random_number_instant]
     
-    
     return [random_number, random_number_instant]
 
+# function of normal distribution probability density -> PDF
 def noraml_pdf(x, miu, sigma):
+    
     return (1/(sigma*(2*math.pi)**0.5)) * math.exp(-0.5*((x-miu)/sigma)**2)
 
 
-def decimal_normal_distribution(b, a = 0):
-    
-    unifrom_number_list = decimal_uniform_distribution(b, a = 0)
+# function to generate 
+def decimal_normal_distribution(miu = 0, variance = 1):
     
     result = []
-    for unifrom_number in unifrom_number_list:
-        f_uniform_number = noraml_pdf(unifrom_number, miu = (b/2), sigma = 1)
-        for _ in range(int(f_uniform_number*b**2)):
-            result.append(unifrom_number)
-
+    seed = 2
+    
+    for _ in range(100):
+        u1 = linear_congruential_generator(decimal_uniform_distribution_zeroone(), 1, 2, seed)
+        u2 = linear_congruential_generator(decimal_uniform_distribution_zeroone(), 1, 2, u1[1])
+        z0 = math.sqrt(-2 * math.log(u1[0], math.exp(1))) * math.sin(2 * math.pi * u2[0])
+        z = z0 * variance + miu  
+        result.append(z)
+        seed = u2[1]
     return result
 
 
 # print(integer_uniform_distribution(10,3))
 # print(decimal_uniform_distribution(10))
-# print(decimal_normal_distribution(25))
+print(decimal_normal_distribution())
 
 # seed = 5
 # for _ in range(5):
-#     print(linear_congruential_generator(20,2, 4, seed, 1)[0])
-#     seed = linear_congruential_generator(20,2, 4, seed, 1)[1]
+#     print(linear_congruential_generator(decimal_uniform_distribution_zeroone(),2, 4, seed, 1)[0])
+#     seed = linear_congruential_generator(decimal_uniform_distribution_zeroone(),2, 4, seed, 1)[1]
     
