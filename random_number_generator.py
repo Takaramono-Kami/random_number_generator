@@ -3,12 +3,16 @@
 import math
 
 """
-this is a libray that include all function to generate distribution that we need and function to generate 
+this is a libray that include all function to generate distribution that we need and function to generate random number
 
 distribution:
 1) integer_uniform_distribution -> genrate a list of integer number by uniform distribution 
-2) decimal_uniform_distribution -> genrate a list of float number by uniform distribution
-3) decimal_normal_distribution -> generate a list of float number by noramal distribution
+2) decimal_uniform_distribution_zeroone -> generate a list of integer number by uniform distribution between [0,1]
+3) decimal_uniform_distribution -> genrate a list of float number by uniform distribution
+4) decimal_normal_distribution -> generate a list of float number by normal distribution by mean = miu , variance = variance
+
+random generator algorithm:
+1) linear_congruential_generator -> return random number and instant of random number in list for update seed
 
 """
 
@@ -76,7 +80,7 @@ def decimal_normal_distribution(miu = 0, variance = 1):
 
 # print(integer_uniform_distribution(10,3))
 # print(decimal_uniform_distribution(10))
-print(decimal_normal_distribution())
+# print(decimal_normal_distribution())
 
 # seed = 5
 # for _ in range(5):
