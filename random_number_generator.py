@@ -57,12 +57,14 @@ def linear_congruential_generator(number_list, multiplier, increment, seed, *mod
     return [random_number, random_number_index]
 
 # function of normal distribution probability density -> PDF
+
 def noraml_pdf(x, miu, sigma):
     
     return (1/(sigma*(2*math.pi)**0.5)) * math.exp(-0.5*((x-miu)/sigma)**2)
 
 
-# function to generate 
+# function to generate number with normal distribution
+
 def decimal_normal_distribution(miu = 0, variance = 1):
     
     result = []

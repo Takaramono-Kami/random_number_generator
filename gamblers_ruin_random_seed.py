@@ -49,7 +49,7 @@ def game_round(player_round, seed):
     return seed
 
 
-# simulation gamblers_ruin
+# simulation gamblers_ruin but this time with random seed
 seed =  int(time.time()) % len(player_number_list) 
 
 for _ in range(100):

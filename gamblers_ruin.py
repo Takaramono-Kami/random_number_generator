@@ -28,12 +28,17 @@ for player_number in player_number_list:
 
 # now we need some function for doing some repetitive tasks
 
+# this function check player and money of each player and then if money of some player is zero, function remove 
+# ... this player and retrurn new player number and new player_money information to continue game
 def remove_looser(main_dict, player_number_list):
     for player_number in player_number_list:
         if main_dict[player_number] == 0:
             player_number_list.remove(player_number)
             del main_dict[player_number]
     return main_dict, player_number_list
+
+# this function get number of player that he/she should play in this round and generate random number between player number
+# ... and give 1 $ to random player and return last seed to new seed
 
 def game_round(player_round, seed):
     
@@ -43,13 +48,13 @@ def game_round(player_round, seed):
     player_money_dict[player_round] -= 1
     player_money_dict[random_number] += 1
     
-    return seed
+    return seed % len(player_number_list)
 
 
 # simulation gamblers_ruin
-seed =  4
+seed = 1
 
-for _ in range(100):
+for _ in range(20):
     for player_number in player_number_list:
         seed = game_round(player_number,seed)
         player_money_dict, player_number_list = remove_looser(player_money_dict, player_number_list)
