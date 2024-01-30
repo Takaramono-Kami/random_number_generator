@@ -9,9 +9,6 @@ this file inclued function or variable for simulation this game
 from random_number_generator import integer_uniform_distribution
 from random_number_generator import linear_congruential_generator
 
-import time
-
-
 # set variable we need to simulation
 
 number_of_player = 20
