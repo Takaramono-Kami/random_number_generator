@@ -51,10 +51,10 @@ def decimal_uniform_distribution(b, a =0):
 def linear_congruential_generator(number_list, multiplier, increment, seed, *modulus):
     
     modulus = len(number_list)
-    random_number_instant = ((multiplier * seed) + increment) % modulus
-    random_number = number_list[random_number_instant]
+    random_number_index = ((multiplier * seed) + increment) % modulus
+    random_number = number_list[random_number_index]
     
-    return [random_number, random_number_instant]
+    return [random_number, random_number_index]
 
 # function of normal distribution probability density -> PDF
 def noraml_pdf(x, miu, sigma):
